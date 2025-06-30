@@ -1,4 +1,7 @@
 use axum::{routing::post, Router, serve};
+use axum::{routing::{ get},  response::IntoResponse};
+
+
 use std::env;
 use std::net::SocketAddr;
 
@@ -14,6 +17,11 @@ use handlers::{
     transfer::{send_sol, send_token},
 };
 
+async fn root() -> impl IntoResponse {
+    "Welcome to the Solana Fellowship Server 🚀"
+}
+
+
 #[tokio::main]
 async fn main() {
     // For Render: get port from environment variable "PORT"
@@ -27,6 +35,7 @@ async fn main() {
     println!("✅ Server running at http://{}", addr);
 
     let app = Router::new()
+        .route("/", get(root))
         .route("/keypair", post(generate_keypair))
         .route("/token/create", post(create_token))
         .route("/token/mint", post(mint_token))
