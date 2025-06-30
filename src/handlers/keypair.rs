@@ -11,8 +11,8 @@ pub async fn generate_keypair() -> Json<serde_json::Value> {
     Json(json!({
         "success": true,
         "data": {
-            "public_key": pubkey,
-            "secret_key": secret,
+            "pubkey": pubkey,
+            "secret": secret,
         }
         
     }))
