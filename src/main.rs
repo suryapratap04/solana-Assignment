@@ -1,4 +1,5 @@
 use axum::{routing::post, Router, serve};
+use std::env;
 use std::net::SocketAddr;
 
 mod models;
@@ -15,6 +16,16 @@ use handlers::{
 
 #[tokio::main]
 async fn main() {
+    // For Render: get port from environment variable "PORT"
+    // For local: default to 8080
+    let port: u16 = env::var("PORT")
+        .unwrap_or_else(|_| "8080".to_string())
+        .parse()
+        .expect("PORT must be a number");
+
+    let addr = SocketAddr::from(([0, 0, 0, 0], port));
+    println!("✅ Server running at http://{}", addr);
+
     let app = Router::new()
         .route("/keypair", post(generate_keypair))
         .route("/token/create", post(create_token))
@@ -23,9 +34,6 @@ async fn main() {
         .route("/message/verify", post(verify_message))
         .route("/send/sol", post(send_sol))
         .route("/send/token", post(send_token));
-
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
-    println!("✅ Server running at http://{}", addr);
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     serve(listener, app).await.unwrap();
