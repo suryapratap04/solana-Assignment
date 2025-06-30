@@ -9,7 +9,11 @@ pub async fn generate_keypair() -> Json<serde_json::Value> {
     let secret = encode_base58(&keypair.to_bytes());
 
     Json(json!({
-        "public_key": pubkey,
-        "secret_key": secret,
+        "success": true,
+        "data": {
+            "public_key": pubkey,
+            "secret_key": secret,
+        }
+        
     }))
 }
