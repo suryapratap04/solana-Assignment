@@ -1,7 +1,4 @@
-use axum::{routing::post, Router, serve};
-use axum::{routing::{ get},  response::IntoResponse};
-
-
+use axum::{routing::{get, post}, Router, response::IntoResponse};
 use std::env;
 use std::net::SocketAddr;
 
@@ -17,17 +14,15 @@ use handlers::{
     transfer::{send_sol, send_token},
 };
 
+// Root "/" endpoint
 async fn root() -> impl IntoResponse {
     "Welcome to the Solana Fellowship Server 🚀"
 }
 
-
 #[tokio::main]
 async fn main() {
-    // For Render: get port from environment variable "PORT"
-    // For local: default to 8080
     let port: u16 = env::var("PORT")
-        .unwrap_or_else(|_| "8080".to_string())
+        .expect("PORT environment variable not set")
         .parse()
         .expect("PORT must be a number");
 
@@ -45,5 +40,5 @@ async fn main() {
         .route("/send/token", post(send_token));
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
-    serve(listener, app).await.unwrap();
+    axum::serve(listener, app).await.unwrap();
 }
