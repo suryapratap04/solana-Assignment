@@ -14,6 +14,8 @@ pub struct ErrorResponse {
 
 // Example Request Models
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+
 pub struct TokenCreateRequest {
     pub mint_authority: String,
     pub mint: String,
@@ -21,6 +23,8 @@ pub struct TokenCreateRequest {
 }
 
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+
 pub struct MintTokenRequest {
     pub mint: String,
     pub destination: String,
@@ -29,12 +33,16 @@ pub struct MintTokenRequest {
 }
 
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+
 pub struct SignMessageRequest {
     pub message: String,
     pub secret: String,
 }
 
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+
 pub struct VerifyMessageRequest {
     pub message: String,
     pub signature: String,
@@ -42,6 +50,8 @@ pub struct VerifyMessageRequest {
 }
 
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+
 pub struct SendSolRequest {
     pub from: String,
     pub to: String,
@@ -49,6 +59,8 @@ pub struct SendSolRequest {
 }
 
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+
 pub struct SendTokenRequest {
     pub destination: String,
     pub mint: String,
