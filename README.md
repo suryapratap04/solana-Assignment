@@ -30,19 +30,31 @@ A lightweight, fast, and production-ready HTTP server in Rust that exposes Solan
 ---
 
 ## 📂 Project Directory Structure
-
-solana_fellowship_server/
-├── src/
-│   ├── handlers/       # API endpoint logic
-│   ├── models/         # Request/response data models
-│   ├── utils/          # Utility functions (encoding etc.)
-│   ├── error.rs        # Error handling
-│   └── main.rs         # Server startup & routing
-├── Cargo.toml
-└── README.md
-
-
-
+```
+solana_fellowship_server:
+  ├── src
+  │   ├── handlers
+  │   │   ├── keypair.rs
+  │   │   ├── token.rs
+  │   │   ├── message.rs
+  │   │   └── transfer.rs
+  │   ├── models
+  │   │   ├── keypair.rs
+  │   │   ├── token.rs
+  │   │   ├── message.rs
+  │   │   └── transfer.rs
+  │   ├── utils
+  │   │   ├── base58.rs
+  │   │   └── encoding.rs
+  │   ├── error.rs
+  │   └── main.rs
+  ├── Cargo.toml
+  ├── Cargo.lock
+  ├── README.md
+  ├── .gitignore
+  ├── .env
+  └── target/  # (Generated after build)
+```
 ---
 
 ## Clone, Build, and Run
