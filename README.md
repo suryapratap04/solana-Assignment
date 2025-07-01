@@ -335,7 +335,7 @@ Response:
 
 💻 cURL
 
-🧪 Rust Unit Tests (Optional)
+🧪 Rust Unit Tests (Will Be Added)
 
 ## ⚠️ Important Notes
 This server only generates instructions for Solana on-chain programs.
